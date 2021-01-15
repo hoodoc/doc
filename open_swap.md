@@ -124,7 +124,7 @@ Hoo开放API接口说明
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
-|symbol|string|否|交易对：格式：ETH-USDT|
+|symbol|string|是|交易对：格式：ETH-USDT|
 |sign|string|是|签名|
 
 返回数据  
@@ -171,7 +171,7 @@ Hoo开放API接口说明
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
-|pool_id|string|是|池子id｜
+|pool_id|string|是|池子id|
 |sign|string|是|签名|
 
 返回数据  
@@ -285,7 +285,7 @@ item数据结构
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
-|symbol|string|否|交易对：格式：ETH－HOO|
+|symbol|string|是|交易对：格式：ETH－HOO|
 |sign|string|是|签名|
 
 返回数据  
@@ -335,11 +335,11 @@ response:
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
-|symbol|string|否|交易对：格式：ETH－HOO|
+|symbol|string|是|交易对：格式：ETH－HOO|
 |coin_name|string|否|货币名称：格式：ETH|
-|pagenum|string|否|页码｜
+|pagenum|string|否|页码|
 |pagesize|string|否|每页数据量，范围[5:100]|
-|trade_type|string|否|1存入,2取出,3兑换｜
+|trade_type|string|否|1存入,2取出,3兑换|
 |sign|string|是|签名|
 
 返回数据  
@@ -350,7 +350,7 @@ response:
 item数据结构  
 | 参数名 | 参数类型 | 描述 |
 |:---:|:---:|:---:|
-|title|string|交易title: 存入，取出｜
+|title|string|交易title: 存入，取出|
 |symbol|string|交易对：格式：ETH－HOO|
 |wallet_id|string|钱包ID|
 |base_name|string|币种1名称|
@@ -404,8 +404,8 @@ item数据结构
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
-|name|string|否|币种名称｜
-|pagenum|string|否|页码｜
+|name|string|否|币种名称,若不指定name,则返回所有用户注册的币种数据|
+|pagenum|string|否|页码|
 |pagesize|string|否|每页数据量，范围[5:100]|
 |sign|string|是|签名|
 
@@ -417,11 +417,11 @@ item数据结构
 item数据结构  
 | 参数名 | 参数类型 | 描述 |
 |:---:|:---:|:---:|
-|pool_id|string|池子id｜
-|name|string|币种名称｜
-|logo1|string|币种1 logo｜
-|logo2|string|币种2 logo｜
-|multiple|string|挖矿倍数｜
+|pool_id|string|池子id|
+|name|string|币种名称|
+|logo1|string|币种1 logo|
+|logo2|string|币种2 logo|
+|multiple|string|挖矿倍数|
 |pledge_type|string|质押类型|
 |year_rate|string|年化利率|
 |is_swap|string|是否Swap做市|
@@ -484,17 +484,17 @@ item数据结构
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
-|pool_id|string|是|池子ID｜
+|pool_id|string|是|池子ID|
 |sign|string|是|签名|
 
 返回数据  
 | 参数名 | 参数类型 | 描述 |
 |:---:|:---:|:---:|
-|pool_id|string|池子id｜
-|name|string|币种名称｜
-|logo1|string|币种1 logo｜
-|logo2|string|币种2 logo｜
-|multiple|string|挖矿倍数｜
+|pool_id|string|池子id|
+|name|string|币种名称|
+|logo1|string|币种1 logo|
+|logo2|string|币种2 logo|
+|multiple|string|挖矿倍数|
 |pledge_type|string|质押类型|
 |year_rate|string|年化利率|
 |is_swap|string|是否Swap做市|
