@@ -7,7 +7,7 @@ Hoo开放API接口说明
 4. 接口统一返回格式：{"code": "10000", "message": "success", "data": {}}，code=10000时接口成功，其他为接口错误
 5. 接口有IP地址限制，接口接入前须提供接入的IP地址
 
-```json
+```
     签名示例(Python)：
     import hmac
     import hashlib
@@ -18,42 +18,33 @@ Hoo开放API接口说明
 ```
 
 ### [<font id=ex color=blue>兑换</font>](#ex)
-    POST /api/open/swap/ex  
-请求参数  
+    POST /api/open/swap/ex
+
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
 |symbol|string|是|交易对：格式：ETH-USDT|
 |send_coin|string|是|发起兑换的币种名称|
 |send_volume|decimal|是|发起兑换的币种数量|
-|sign|string|是|签名|
 
-返回数据  
-| 参数名 | 参数类型 | 描述 |
-|:---:|:---:|:---:|
-|is_routing|bool|是否路由|
-|mid_name|string|中间币名称|
-|mid_icon|string|中间币icon|
-
+返回
+```
+{
+    "message":"success",
+    "code":"10000",
+    "data":{}
+}
+```
 ### [<font id=reg color=blue>获取池子数量</font>](#reg)
     POST /api/open/swap/poolvolume
 
-请求参数  
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
 |symbol|string|是|交易对：格式：ETH-USDT|
-|sign|string|是|签名|
 
-返回数据  
-| 参数名 | 参数类型 | 描述 |
-|:---:|:---:|:---:|
-|coin0|string|币种1名称|
-|coin1|string|币种2名称|
-|volume0|string|币种1金额|
-|volume1|string|币种2金额|
-
-```json
+返回
+```
 {
     "message":"success",
     "code":"10000",
@@ -68,26 +59,15 @@ Hoo开放API接口说明
 ### [<font id=ex color=blue>增加流动性</font>](#ex)
     POST /api/open/swap/addliquidity
 
-请求参数  
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
 |symbol|string|是|交易对：格式：ETH-USDT|
 |base_volume|decimal|是|交易币种(eg. ETN-USDT中的ETH)数量|
 |quote_volume|decimal|是|计价币种(eg. ETH-USDT中的USDT)数量|
-|sign|string|是|签名|
 
-返回数据  
-| 参数名 | 参数类型 | 描述 |
-|:---:|:---:|:---:|
-|symbol|string|币种对名称|
-|base_name|string|币种1名称|
-|token_name|string|币种2名称|
-|lp_amount|string|流动性份数|
-|lp_name|string|流动性名称：如:"BTC-USDT LP"|
-
-
-```json
+返回
+```
 {
     "message":"success",
     "code":"10000",
@@ -102,46 +82,33 @@ Hoo开放API接口说明
 ```
 
 ### [<font id=ex color=blue>减少流动性</font>](#ex)
-    POST /api/open/swap/removeliquidity  
-请求参数   
+    POST /api/open/swap/removeliquidity
+
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
 |symbol|string|是|交易对：格式：ETH-USDT|
 |percent|int|是|取出的lp百分比，整数：0 < percent <= 100|
-|sign|string|是|签名|
 
-返回数据  
-| 参数名 | 参数类型 | 描述 |
-|:---:|:---:|:---:|
-|ts|string|操作日期|
-
-
+返回
+```
+{
+    "message":"success",
+    "code":"10000",
+    "data":{}
+}
+```
 
 ### [<font id=ex color=blue>获取可提取资产（我的做市）</font>](#ex)
-    POST /api/open/swap/theoryassets  
-请求参数   
+    POST /api/open/swap/theoryassets
+
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
-|symbol|string|是|交易对：格式：ETH-USDT|
-|sign|string|是|签名|
+|symbol|string|否|交易对：格式：ETH-USDT|
 
-返回数据  
-| 参数名 | 参数类型 | 描述 |
-|:---:|:---:|:---:|
-|symbol|string|币种对名称|
-|base_name|string|币种1名称|
-|token_name|string|币种2名称|
-|base_amount|string|币种1金额|
-|token_amount|string|币种2金额|
-|percent|string|LP占比（%）|
-|lp_amount|string|可用流动性代币LP数量|
-|freeze|string|HooPool质押流动性代币LP数量|
-|lp_name|string|流动性代币LP名称, 如:"BTC-USDT LP"|
-|is_stablecoin|string|是否稳定币池子|
-
-```json
+返回
+```
 {
     "message":"success",
     "code":"10000",
@@ -166,58 +133,76 @@ Hoo开放API接口说明
 
 
 ### [<font id=ex color=blue>获取LP数量</font>](#ex)
-    GET /api/open/pool/lp
-请求参数  
+    GET /api/open/swap/lp
+
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
-|pool_id|string|是|池子id|
-|sign|string|是|签名|
+|symbol|string|是|交易对：格式：ETH-USDT|
 
-返回数据  
-| 参数名 | 参数类型 | 描述 |
-|:---:|:---:|:---:|
-|pledged|string|lp数量|
-
-```json
+返回
+```
 {
-  "code": "10000",
-  "message": "success",
-  "data": {
-    "pledged": "0"
-  }
+    "message":"success",
+    "code":"10000",
+    "data":{
+        "amount":"28.2",
+        "freeze":"13.02"
+    }
 }
 ```
 
+### [<font id=ex color=blue>抵押LP</font>](#ex)
+    POST /api/open/hoopool/stakelp
+
+| 参数名 | 参数类型 | 是否必须 | 描述 |
+|:---:|:---:|:---:|:---:|
+|client_id|string|是|Hoo提供给用户的接入ID|
+|symbol|string|是|交易对：格式：ETH-USDT|
+|lp_amount|decimal|是|需要抵押的LP的数量|
+
+返回
+```
+{
+    "message":"success",
+    "code":"10000",
+    "data":{}
+}
+```
+
+### [<font id=ex color=blue>赎回LP</font>](#ex)
+    GET /api/open/hoopool/retrievelp
+
+| 参数名 | 参数类型 | 是否必须 | 描述 |
+|:---:|:---:|:---:|:---:|
+|client_id|string|是|Hoo提供给用户的接入ID|
+|symbol|string|是|交易对：格式：ETH-USDT|
+|lp_amount|decimal|是|需要赎回的LP的数量|
+
+返回
+```
+{
+    "message":"success",
+    "code":"10000",
+    "data":{}
+}
+```
 
 ### [<font id=ex color=blue>交易对历史价格</font>](#ex)
     POST /api/open/swap/price/history
-请求参数   
+
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
 |symbol|string|是|交易对：格式：ETH-USDT|
 |date_begin|string|是|起始日期：格式：YYYYMMDD，如20201028|
 |date_end|string|是|起始日期：格式：YYYYMMDD，如20201230, 且date_end须比date_begin大|
-|page|string|否|页码，从1开始|
+|page|string|否|页码，从0开始|
 |page_size|string|否|每页数据条数,默认值为100|
 |sign|string|是|签名|
 
-返回数据  
-| 参数名 | 参数类型 | 描述 |
-|:---:|:---:|:---:|
-|data|[]item|数据列表|
-
-item数据结构  
-| 参数名 | 参数类型 | 描述 |
-|:---:|:---:|:---:|
-|coin0|string|币种1名称|
-|coin1|string|币种2名称|
-|price1|string|币种1价格|
-|price2|string|币种2价格|
-|date|int|日期，格式：YYMMDD|
-
-```json
+返回
+```
 {
   "code": "10000",
   "message": "success",
@@ -242,26 +227,16 @@ item数据结构
 
 ### [<font id=ex color=blue>交易对价格</font>](#ex)
   GET /api/open/swap/price
-请求参数  
+
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
-|symbol|string|是|交易对：格式：ETH-USDT|
-|sign|string|是|签名|
-
-返回数据  
-| 参数名 | 参数类型 | 描述 |
-|:---:|:---:|:---:|
-|symbol|string|是|交易对：格式：ETH-USDT|
 |base_name|string|是|交易对：格式：ETH|
 |token_name|string|是|交易对：格式：USDT|
-|base_price|string|币种1交易价格|
-|token_price|string|币种2交易价格|
-|base_pool|string|币种1余额|
-|token_pool|string|币种2余额|
-|total_share|string|流动性总份数|
+|sign|string|是|签名|
 
-```json
+返回
+```
 {
   "code": "10000",
   "message": "success",
@@ -281,28 +256,16 @@ item数据结构
 
 ### [<font id=ex color=blue>流动池24小时交易量</font>](#ex)
     POST /api/open/swap/trade/volume
-请求参数  
+
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
-|symbol|string|是|交易对：格式：ETH－HOO|
 |sign|string|是|签名|
+|symbol|string|是|交易对：格式：ETH－HOO|
 
-返回数据  
-| 参数名 | 参数类型 | 描述 |
-|:---:|:---:|:---:|
-|symbol|string|是|交易对：格式：ETH-USDT|
-|base_name|string|是|交易对：格式：ETH|
-|token_name|string|是|交易对：格式：USDT|
-|base_icon|string|币种1 icon|
-|token_icon|string|币种2 icon|
-|total_pool|string|池子总份额|
-|volume_24h|string|过去24小时交易量|
-|volume_7d|string|过去7天交易量总份数|
-|fee_24h|string|过去24小时手续费|
-|v|float64|池子总份额|
 
-```json
+返回
+```
 response:
 {
   "code": "10000",
@@ -331,36 +294,15 @@ response:
 
 ### [<font id=ex color=blue>交易记录</font>](#ex)
     POST /api/open/swap/trade/records
-请求参数  
+
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
-|symbol|string|是|交易对：格式：ETH－HOO|
-|coin_name|string|否|货币名称：格式：ETH|
-|pagenum|string|否|页码|
-|pagesize|string|否|每页数据量，范围[5:100]|
-|trade_type|string|否|1存入,2取出,3兑换|
 |sign|string|是|签名|
+|symbol|string|是|交易对：格式：ETH－HOO|
 
-返回数据  
-| 参数名 | 参数类型 | 描述 |
-|:---:|:---:|:---:|
-|data|[]item|数据列表|
-
-item数据结构  
-| 参数名 | 参数类型 | 描述 |
-|:---:|:---:|:---:|
-|title|string|交易title: 存入，取出|
-|symbol|string|交易对：格式：ETH－HOO|
-|wallet_id|string|钱包ID|
-|base_name|string|币种1名称|
-|token_name|string|币种2名称|
-|base_amount|string|币种1金额|
-|token_amount|string|币种2金额|
-|value|string|交易金额,若trade_type=3，则为base_value+token_value|
-|create_at|string|交易时间|
-
-```json
+返回
+```
 {
   "code": "10000",
   "data": {
@@ -400,37 +342,16 @@ item数据结构
 
 ### [<font id=ex color=blue>池子信息</font>](#ex)
     POST /api/open/pool/pools
-请求参数  
+
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
-|name|string|否|币种名称,若不指定name,则返回所有用户注册的币种数据|
-|pagenum|string|否|页码|
-|pagesize|string|否|每页数据量，范围[5:100]|
 |sign|string|是|签名|
+|pagenum|string|否|页码｜
+|pagesize|string|否|每页数据量，范围[5:100]|
 
-返回数据  
-| 参数名 | 参数类型 | 描述 |
-|:---:|:---:|:---:|
-|data|[]item|数据列表|
-
-item数据结构  
-| 参数名 | 参数类型 | 描述 |
-|:---:|:---:|:---:|
-|pool_id|string|池子id|
-|name|string|币种名称|
-|logo1|string|币种1 logo|
-|logo2|string|币种2 logo|
-|multiple|string|挖矿倍数|
-|pledge_type|string|质押类型|
-|year_rate|string|年化利率|
-|is_swap|string|是否Swap做市|
-|symbol|string|交易对：格式：ETH－HOO|
-|start_at|string|开始时间|
-|stop_at|string|结束时间|
-|mining_coins|[]string|挖矿币种|
-
-```json
+返回
+```
 {
   "code": "10000",
   "data": {
@@ -451,6 +372,7 @@ item数据结构
         "is_swap": false,
         "pool_id": 28
       },
+      ...
       {
         "mining_coins": [
         "EOS",
@@ -476,52 +398,4 @@ item数据结构
 "message": "success"
 }
 
-```
-
-### [<font id=ex color=blue>根据池子ID获取池子信息</font>](#ex)
-    POST /api/open/pool
-请求参数  
-| 参数名 | 参数类型 | 是否必须 | 描述 |
-|:---:|:---:|:---:|:---:|
-|client_id|string|是|Hoo提供给用户的接入ID|
-|pool_id|string|是|池子ID|
-|sign|string|是|签名|
-
-返回数据  
-| 参数名 | 参数类型 | 描述 |
-|:---:|:---:|:---:|
-|pool_id|string|池子id|
-|name|string|币种名称|
-|logo1|string|币种1 logo|
-|logo2|string|币种2 logo|
-|multiple|string|挖矿倍数|
-|pledge_type|string|质押类型|
-|year_rate|string|年化利率|
-|is_swap|string|是否Swap做市|
-|symbol|string|交易对：格式：ETH－HOO|
-|start_at|string|开始时间|
-|stop_at|string|结束时间|
-|mining_coins|[]string|挖矿币种|
-
-```json
-{
-  "data": {
-    "name": "EOS",
-    "symbol": "EOS",
-    "multiple": "3",
-    "year_rate": "0",
-    "pool_id": 39,
-    "stop_at": 1608868739,
-    "logo1": "https://wallet.test.hoogeek.com/media/news_thumb/16088677054857416_19.png",
-    "logo2": "",
-    "mining_coins": [
-      "EOS"
-    ],
-    "start_at": 1608867680,
-    "pledge_type": 2,
-    "is_swap": false
-  },
-  "code": "10000",
-  "message": "success"
-}
 ```
