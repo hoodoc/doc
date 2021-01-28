@@ -231,8 +231,7 @@ Hoo开放API接口说明
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
-|base_name|string|是|交易对：格式：ETH|
-|token_name|string|是|交易对：格式：USDT|
+|symbol|string|是|交易对：格式：ETH-USDT|
 |sign|string|是|签名|
 
 返回
