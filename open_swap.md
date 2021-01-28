@@ -166,12 +166,11 @@ Hoo开放API接口说明
 
 
 ### [<font id=ex color=blue>获取LP数量</font>](#ex)
-    GET /api/open/pool/lp
+    GET /api/open/swap/lp
 请求参数  
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
-|pool_id|string|是|池子id|
 |sign|string|是|签名|
 
 返回数据  
@@ -285,8 +284,9 @@ item数据结构
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
-|symbol|string|是|交易对：格式：ETH－HOO|
 |sign|string|是|签名|
+|coin_name|string|否|币种：格式：ETH|
+|symbol|string|否|交易对：格式：ETH－HOO|
 
 返回数据  
 | 参数名 | 参数类型 | 描述 |
@@ -335,12 +335,12 @@ response:
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
-|symbol|string|是|交易对：格式：ETH－HOO|
-|coin_name|string|否|货币名称：格式：ETH|
+|sign|string|是|签名|
+|symbol|string|否|交易对：格式：ETH－HOO|
+|coin_name|string|否|币种：格式：ETH|
 |pagenum|string|否|页码|
 |pagesize|string|否|每页数据量，范围[5:100]|
 |trade_type|string|否|1存入,2取出,3兑换|
-|sign|string|是|签名|
 
 返回数据  
 | 参数名 | 参数类型 | 描述 |
@@ -404,10 +404,10 @@ item数据结构
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
+|sign|string|是|签名|
 |name|string|否|币种名称,若不指定name,则返回所有用户注册的币种数据|
 |pagenum|string|否|页码|
 |pagesize|string|否|每页数据量，范围[5:100]|
-|sign|string|是|签名|
 
 返回数据  
 | 参数名 | 参数类型 | 描述 |
@@ -429,6 +429,9 @@ item数据结构
 |start_at|string|开始时间|
 |stop_at|string|结束时间|
 |mining_coins|[]string|挖矿币种|
+|mined_name|string|已挖矿币种名称|
+|today_supply|string|今日已挖矿数量|
+|stop_at|string|结束时间|
 
 ```json
 {
@@ -449,7 +452,9 @@ item数据结构
         "symbol": "BTC",
         "year_rate": "0",
         "is_swap": false,
-        "pool_id": 28
+        "pool_id": 28,
+        "mined_name": "HOO",
+        "today_supply": "10000",
       },
       {
         "mining_coins": [
