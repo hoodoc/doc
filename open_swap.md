@@ -45,6 +45,42 @@ def get_swap_lp:
   print_resp(HttpPost(url, payload, None))
 ```
 
+* 请求示例（curl）
+```Shell
+curl -X POST 'http://localhost:8000/api/open/swap/lp'\
+-H 'Content-Type: application/x-www-form-urlencoded'
+-d 'client_id=TdtfNnFCUA6X7e32f7PGBzP11Bhws2&symbol=USDT-ETH&sign=6044f10d4a49de0b43e0aba113c430894d0353de0a5f445f6f8d85baa6318855'
+{
+  "code": "10000",
+  "message": "success",
+  "data": {
+    "records": [
+      {
+        "symbol": "USDT-ETH",
+        "base_name": "USDT",
+        "token_name": "ETH",
+        "base_icon": "https://wallet.test.hoogeek.com/static_pc/icons/usdt.png?v=1",
+        "token_icon": "https://wallet.test.hoogeek.com/static_pc/icons/eth.png?v=1",
+        "lp_name": "USDT-ETH LP",
+        "is_stablecoin": false,
+        "base_amount": "95.0155",
+        "token_amount": "11.6529",
+        "percent": "2.58",
+        "lp_amount": "33.22174066",
+        "lp_freeze": "0",
+        "fee_per": "1.38",
+        "pool_year_rate": "0",
+        "base_deposit": "96.875",
+        "token_deposit": "11.4287",
+        "lp_per": "-0.01"
+      }
+    ]
+  }
+}
+
+
+```
+
 ### [<font id=ex color=blue>兑换</font>](#ex)
     POST /api/open/swap/ex
 请求参数
