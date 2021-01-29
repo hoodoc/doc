@@ -7,19 +7,47 @@ Hoo开放API接口说明
 4. 接口统一返回格式：{"code": "10000", "message": "success", "data": {}}，code=10000时接口成功，其他为接口错误
 5. 接口有IP地址限制，接口接入前须提供接入的IP地址
 
-```json
-    签名示例(Python)：
-    import hmac
-    import hashlib
 
-    sign_str = "key=value&key1=value1"
-    secret_key = "12345"
-    sign = hmac.new(secret_key.encode("utf-8"), sign_str.encode("utf-8"), digestmod=hashlib.sha256).hexdigest()
+* 请求示例（Python）
+```Python
+# coding=utf-8
+import hmac
+import hashlib
+
+
+client_id = 'FFFFFFFBBBBXXXXXXCCCCCCCFFFFFF'
+client_secret = 'FFFFFFFAAAAAAAABBBBBBXXXXXXXWQT8FFFFFFKKKKKKADXXXXXX'
+
+
+# 签名
+def get_payload(data):
+    keys = sorted(data)
+    sign_str = '&'.join(['%s=%s' % (k, data.get(k)) for k in keys])
+    sign_mac = hmac.new(
+        client_secret.encode("utf-8"),
+        sign_str.encode("utf-8"),
+        digestmod=hashlib.sha256)
+    sign = sign_mac.hexdigest()
+
+    payload = ""
+    for k, v in data.items():
+        payload += k + "=" + v + "&"
+    payload += "sign=" + sign
+    return payload
+
+def get_swap_lp:
+  url = 'https://wallet.hoogeek.com/api/open/swap/lp'
+  data = {
+      'client_id': client_id,
+      'symbol': 'USDT-ETH',
+  }
+  payload = get_payload(data)
+  print_resp(HttpPost(url, payload, None))
 ```
 
 ### [<font id=ex color=blue>兑换</font>](#ex)
-    POST /api/open/swap/ex  
-请求参数  
+    POST /api/open/swap/ex
+请求参数
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
@@ -28,7 +56,7 @@ Hoo开放API接口说明
 |send_volume|decimal|是|发起兑换的币种数量|
 |sign|string|是|签名|
 
-返回数据  
+返回数据
 | 参数名 | 参数类型 | 描述 |
 |:---:|:---:|:---:|
 |is_routing|bool|是否路由|
@@ -38,14 +66,14 @@ Hoo开放API接口说明
 ### [<font id=reg color=blue>获取池子数量</font>](#reg)
     POST /api/open/swap/poolvolume
 
-请求参数  
+请求参数
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
 |symbol|string|是|交易对：格式：ETH-USDT|
 |sign|string|是|签名|
 
-返回数据  
+返回数据
 | 参数名 | 参数类型 | 描述 |
 |:---:|:---:|:---:|
 |coin0|string|币种1名称|
@@ -68,7 +96,7 @@ Hoo开放API接口说明
 ### [<font id=ex color=blue>增加流动性</font>](#ex)
     POST /api/open/swap/addliquidity
 
-请求参数  
+请求参数
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
@@ -77,7 +105,7 @@ Hoo开放API接口说明
 |quote_volume|decimal|是|计价币种(eg. ETH-USDT中的USDT)数量|
 |sign|string|是|签名|
 
-返回数据  
+返回数据
 | 参数名 | 参数类型 | 描述 |
 |:---:|:---:|:---:|
 |symbol|string|币种对名称|
@@ -102,8 +130,8 @@ Hoo开放API接口说明
 ```
 
 ### [<font id=ex color=blue>减少流动性</font>](#ex)
-    POST /api/open/swap/removeliquidity  
-请求参数   
+    POST /api/open/swap/removeliquidity
+请求参数
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
@@ -111,7 +139,7 @@ Hoo开放API接口说明
 |percent|int|是|取出的lp百分比，整数：0 < percent <= 100|
 |sign|string|是|签名|
 
-返回数据  
+返回数据
 | 参数名 | 参数类型 | 描述 |
 |:---:|:---:|:---:|
 |ts|string|操作日期|
@@ -119,15 +147,15 @@ Hoo开放API接口说明
 
 
 ### [<font id=ex color=blue>获取可提取资产（我的做市）</font>](#ex)
-    POST /api/open/swap/theoryassets  
-请求参数   
+    POST /api/open/swap/theoryassets
+请求参数
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
 |symbol|string|是|交易对：格式：ETH-USDT|
 |sign|string|是|签名|
 
-返回数据  
+返回数据
 | 参数名 | 参数类型 | 描述 |
 |:---:|:---:|:---:|
 |symbol|string|币种对名称|
@@ -167,13 +195,13 @@ Hoo开放API接口说明
 
 ### [<font id=ex color=blue>获取LP数量</font>](#ex)
     GET /api/open/swap/lp
-请求参数  
+请求参数
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
 |sign|string|是|签名|
 
-返回数据  
+返回数据
 | 参数名 | 参数类型 | 描述 |
 |:---:|:---:|:---:|
 |pledged|string|lp数量|
@@ -191,7 +219,7 @@ Hoo开放API接口说明
 
 ### [<font id=ex color=blue>交易对历史价格</font>](#ex)
     POST /api/open/swap/price/history
-请求参数   
+请求参数
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
@@ -202,12 +230,12 @@ Hoo开放API接口说明
 |page_size|string|否|每页数据条数,默认值为100|
 |sign|string|是|签名|
 
-返回数据  
+返回数据
 | 参数名 | 参数类型 | 描述 |
 |:---:|:---:|:---:|
 |data|[]item|数据列表|
 
-item数据结构  
+item数据结构
 | 参数名 | 参数类型 | 描述 |
 |:---:|:---:|:---:|
 |coin0|string|币种1名称|
@@ -241,14 +269,14 @@ item数据结构
 
 ### [<font id=ex color=blue>交易对价格</font>](#ex)
   GET /api/open/swap/price
-请求参数  
+请求参数
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
 |symbol|string|是|交易对：格式：ETH-USDT|
 |sign|string|是|签名|
 
-返回数据  
+返回数据
 | 参数名 | 参数类型 | 描述 |
 |:---:|:---:|:---:|
 |symbol|string|是|交易对：格式：ETH-USDT|
@@ -280,7 +308,7 @@ item数据结构
 
 ### [<font id=ex color=blue>流动池24小时交易量</font>](#ex)
     POST /api/open/swap/trade/volume
-请求参数  
+请求参数
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
@@ -288,7 +316,7 @@ item数据结构
 |coin_name|string|否|币种：格式：ETH|
 |symbol|string|否|交易对：格式：ETH－HOO|
 
-返回数据  
+返回数据
 | 参数名 | 参数类型 | 描述 |
 |:---:|:---:|:---:|
 |symbol|string|是|交易对：格式：ETH-USDT|
@@ -331,7 +359,7 @@ response:
 
 ### [<font id=ex color=blue>交易记录</font>](#ex)
     POST /api/open/swap/trade/records
-请求参数  
+请求参数
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
@@ -342,12 +370,12 @@ response:
 |pagesize|string|否|每页数据量，范围[5:100]|
 |trade_type|string|否|1存入,2取出,3兑换|
 
-返回数据  
+返回数据
 | 参数名 | 参数类型 | 描述 |
 |:---:|:---:|:---:|
 |data|[]item|数据列表|
 
-item数据结构  
+item数据结构
 | 参数名 | 参数类型 | 描述 |
 |:---:|:---:|:---:|
 |title|string|交易title: 存入，取出|
@@ -400,7 +428,7 @@ item数据结构
 
 ### [<font id=ex color=blue>池子信息</font>](#ex)
     POST /api/open/pool/pools
-请求参数  
+请求参数
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
@@ -409,12 +437,12 @@ item数据结构
 |pagenum|string|否|页码|
 |pagesize|string|否|每页数据量，范围[5:100]|
 
-返回数据  
+返回数据
 | 参数名 | 参数类型 | 描述 |
 |:---:|:---:|:---:|
 |data|[]item|数据列表|
 
-item数据结构  
+item数据结构
 | 参数名 | 参数类型 | 描述 |
 |:---:|:---:|:---:|
 |pool_id|string|池子id|
@@ -485,14 +513,14 @@ item数据结构
 
 ### [<font id=ex color=blue>根据池子ID获取池子信息</font>](#ex)
     POST /api/open/pool
-请求参数  
+请求参数
 | 参数名 | 参数类型 | 是否必须 | 描述 |
 |:---:|:---:|:---:|:---:|
 |client_id|string|是|Hoo提供给用户的接入ID|
 |pool_id|string|是|池子ID|
 |sign|string|是|签名|
 
-返回数据  
+返回数据
 | 参数名 | 参数类型 | 描述 |
 |:---:|:---:|:---:|
 |pool_id|string|池子id|
