@@ -47,7 +47,7 @@ def get_swap_lp:
 
 * 请求示例（curl）
 ```Shell
-curl -X POST 'http://localhost:8000/api/open/swap/lp'\
+curl -X POST 'https://wallet.hoogeek.com/api/open/swap/lp'\
 -H 'Content-Type: application/x-www-form-urlencoded'
 -d 'client_id=FFFFFFFBBBBXXXXXXCCCCCCCFFFFFF&symbol=USDT-ETH&sign=AAAAAAAA4a49de0b43e0aba1XXXXXXXX4d0353de0a5f445f6f8d85baaBBBBBBBB'
 {
