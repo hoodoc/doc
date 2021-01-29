@@ -49,7 +49,7 @@ def get_swap_lp:
 ```Shell
 curl -X POST 'http://localhost:8000/api/open/swap/lp'\
 -H 'Content-Type: application/x-www-form-urlencoded'
--d 'client_id=TdtfNnFCUA6X7e32f7PGBzP11Bhws2&symbol=USDT-ETH&sign=6044f10d4a49de0b43e0aba113c430894d0353de0a5f445f6f8d85baa6318855'
+-d 'client_id=FFFFFFFBBBBXXXXXXCCCCCCCFFFFFF&symbol=USDT-ETH&sign=AAAAAAAA4a49de0b43e0aba1XXXXXXXX4d0353de0a5f445f6f8d85baaBBBBBBBB'
 {
   "code": "10000",
   "message": "success",
