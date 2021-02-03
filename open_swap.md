@@ -36,7 +36,7 @@ def get_payload(data):
     return payload
 
 def get_swap_lp:
-  url = 'https://wallet.hoogeek.com/api/open/swap/lp'
+  url = 'https://hoo.com/api/open/swap/lp'
   data = {
       'client_id': client_id,
       'symbol': 'USDT-ETH',
@@ -47,7 +47,7 @@ def get_swap_lp:
 
 * 请求示例（curl）
 ```Shell
-curl -X POST 'https://wallet.hoogeek.com/api/open/swap/lp'\
+curl -X POST 'https://hoo.com/api/open/swap/lp'\
 -H 'Content-Type: application/x-www-form-urlencoded'
 -d 'client_id=FFFFFFFBBBBXXXXXXCCCCCCCFFFFFF&symbol=USDT-ETH&sign=AAAAAAAA4a49de0b43e0aba1XXXXXXXX4d0353de0a5f445f6f8d85baaBBBBBBBB'
 {
@@ -59,8 +59,8 @@ curl -X POST 'https://wallet.hoogeek.com/api/open/swap/lp'\
         "symbol": "USDT-ETH",
         "base_name": "USDT",
         "token_name": "ETH",
-        "base_icon": "https://wallet.hoogeek.com/static_pc/icons/usdt.png?v=1",
-        "token_icon": "https://wallet.hoogeek.com/static_pc/icons/eth.png?v=1",
+        "base_icon": "https://hoo.com/static_pc/icons/usdt.png?v=1",
+        "token_icon": "https://hoo.com/static_pc/icons/eth.png?v=1",
         "lp_name": "USDT-ETH LP",
         "is_stablecoin": false,
         "base_amount": "95.0155",
@@ -377,8 +377,8 @@ response:
         "symbol": "BTC-EOS",
         "base_name": "BTC",
         "token_name": "EOS",
-        "base_icon": "https://wallet.hoogeek.com/static_pc/icons/btc.png?v=1",
-        "token_icon": "https://wallet.hoogeek.com/static_pc/icons/eos.png?v=1",
+        "base_icon": "https://hoo.com/static_pc/icons/btc.png?v=1",
+        "token_icon": "https://hoo.com/static_pc/icons/eos.png?v=1",
         "total_pool": "284105549.36390177",
         "volume_24h": "0",
         "volume_7d": "0",
@@ -512,7 +512,7 @@ item数据结构
         "multiple": "1",
         "start_at": 1606482243,
         "logo2": "",
-        "logo1": "https://wallet.hoogeek.com/media/news_thumb/16064823003736422_5.png",
+        "logo1": "https://hoo.com/media/news_thumb/16064823003736422_5.png",
         "symbol": "BTC",
         "year_rate": "0",
         "is_swap": false,
@@ -530,8 +530,8 @@ item数据结构
         "stop_at": 1608775015,
         "multiple": "10",
         "start_at": 1606406400,
-        "logo2": "https://wallet.hoogeek.com/media/news_thumb/16064826670180166_17.png",
-        "logo1": "https://wallet.hoogeek.com/media/news_thumb/16064826636837983_12.png",
+        "logo2": "https://hoo.com/media/news_thumb/16064826670180166_17.png",
+        "logo1": "https://hoo.com/media/news_thumb/16064826636837983_12.png",
         "symbol": "EOS-USDT",
         "year_rate": "0",
         "is_swap": true,
@@ -581,7 +581,7 @@ item数据结构
     "year_rate": "0",
     "pool_id": 39,
     "stop_at": 1608868739,
-    "logo1": "https://wallet.hoogeek.com/media/news_thumb/16088677054857416_19.png",
+    "logo1": "https://hoo.com/media/news_thumb/16088677054857416_19.png",
     "logo2": "",
     "mining_coins": [
       "EOS"
