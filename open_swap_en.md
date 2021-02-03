@@ -185,7 +185,7 @@ POST /api/open/swap/removeliquidity
 |ts|string|Operation date|
 
 
-[Access to withdrawable assets (My Liquidity)](https://github.com/rylink/doc/blob/main/open_swap.md#ex)
+### [Access to withdrawable assets (My Liquidity)](https://github.com/rylink/doc/blob/main/open_swap.md#ex)
 
 ```plain
 POST /api/open/swap/theoryassets
