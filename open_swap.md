@@ -594,3 +594,56 @@ item数据结构
   "message": "success"
 }
 ```
+
+### [<font id=ex color=blue>获取otc交易买一卖一价</font>](#ex)
+    GET /api/v1/open/otc/price
+请求参数
+| 参数名 | 参数类型 | 是否必须 | 描述 |
+|:---:|:---:|:---:|:---:|
+|client_id|string|是|Hoo提供给用户的接入ID|
+|nonce|string|是|随机字符串|
+|ts|string|是|时间戳|
+|sign|string|是|签名|
+
+返回数据
+| 参数名 | 参数类型 | 描述 |
+|:---:|:---:|:---:|
+|symbol|string|币种名称|
+|buy_price|string|买一价|
+|sell_price|string|卖一价|
+|ts|int|查询时间|
+
+```json
+{
+  "data": {
+    "data": [
+            {
+                "symbol": "USDT",
+                "buy_price": "6.01",
+                "sell_price": "10.01",
+                "ts": 1612610343
+            },
+            {
+                "symbol": "EOS",
+                "buy_price": "8",
+                "sell_price": "20.24",
+                "ts": 1612610343
+            },
+            {
+                "symbol": "BTC",
+                "buy_price": "1000",
+                "sell_price": "233333",
+                "ts": 1612610343
+            },
+            {
+                "symbol": "ETH",
+                "buy_price": "3333",
+                "sell_price": "3333",
+                "ts": 1612610343
+            }
+        ]
+  },
+  "code": "10000",
+  "message": "success"
+}
+```

@@ -591,7 +591,7 @@ POST /api/open/pool
 |**Field name**|**Data Type**|**Description**|
 |:----|:----|:----|
 |pool_id|string|Poolid|
-|name|string|币种名称|
+|name|string|Token name|
 |logo1|string|Token1 logo|
 |logo2|string|Token2 logo|
 |multiple|string|Mining multiplier|
@@ -620,6 +620,59 @@ POST /api/open/pool
     "start_at": 1608867680,
     "pledge_type": 2,
     "is_swap": false
+  },
+  "code": "10000",
+  "message": "success"
+}
+```
+
+### [<font id=ex color=blue>Get otc transaction buy one sell one price</font>](#ex)
+    GET /api/v1/open/otc/price
+**Request parameters**
+|**Field name**|**Data Type**|**Required**|**Description**|
+|:---:|:---:|:---:|:---:|
+|client_id|string|Yes|Access ID provided to the user by Hoo<br>|
+|nonce|string|Yes|Random string|
+|ts|string|Yes|Timestamp|
+|sign|string|Yes|Signature|
+
+**Response Content**
+|**Field name**|**Data Type**|**Description**|
+|:---:|:---:|:---:|
+|symbol|string|Token name|
+|buy_price|string|Buy one Price|
+|sell_price|string|Sell ​​one price|
+|ts|int|Timestamp|
+
+```json
+{
+  "data": {
+    "data": [
+            {
+                "symbol": "USDT",
+                "buy_price": "6.01",
+                "sell_price": "10.01",
+                "ts": 1612610343
+            },
+            {
+                "symbol": "EOS",
+                "buy_price": "8",
+                "sell_price": "20.24",
+                "ts": 1612610343
+            },
+            {
+                "symbol": "BTC",
+                "buy_price": "1000",
+                "sell_price": "233333",
+                "ts": 1612610343
+            },
+            {
+                "symbol": "ETH",
+                "buy_price": "3333",
+                "sell_price": "3333",
+                "ts": 1612610343
+            }
+        ]
   },
   "code": "10000",
   "message": "success"
